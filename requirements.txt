@@ -1,0 +1,8 @@
+langchain-ollama
+langchain-community
+rich
+langchain
+click
+ddgs
+bs4
+requests
