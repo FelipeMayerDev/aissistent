@@ -12,13 +12,16 @@ def get_steam_prices(game_titles_list: list[str]) -> str:
         A formatted string of game prices
     """
     result = []
+    if isinstance(game_titles_list, str):
+        game_titles_list = [game_titles_list]
+
     try:
         for game in game_titles_list:
             game_name = game.strip()
             url = f"https://store.steampowered.com/api/storesearch/?term={game_name}&l=portuguese&cc=BR"
             headers = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-                "Content-Type": "application/json; charset=utf-8"
+                "Content-Type": "application/json; charset=utf-8",
             }
 
             resp = requests.get(url, headers=headers, timeout=10)
@@ -35,7 +38,7 @@ def get_steam_prices(game_titles_list: list[str]) -> str:
                 result.append(f"{name}: Free to Play")
                 continue
 
-            price = Decimal(price['final']) / 100
+            price = Decimal(price["final"]) / 100
             result.append(f"{name}: R${price:.2f}")
 
         return "\n".join(result)
