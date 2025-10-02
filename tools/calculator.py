@@ -21,10 +21,3 @@ def calculate(expression: str) -> str:
     except Exception as e:
         return f"Error in calculation: {str(e)}"
 
-
-# Alternative: Creating a Tool directly
-# calculator_tool = Tool(
-#     name="advanced_calculator",
-#     description="Performs advanced mathematical calculations including trigonometry",
-#     func=lambda x: calculate(x)
-# )
